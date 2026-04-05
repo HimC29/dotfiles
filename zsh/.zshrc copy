@@ -139,57 +139,6 @@ set-gpu() {
     esac
 }
 
-ql() {
-    if [[ -z "$1" ]]; then
-        echo "Usage: ql <file_or_dir>"
-        return 1
-    fi
-
-    if [[ -d "$1" ]]; then
-        eza --icons "$1"
-    elif [[ -f "$1" ]]; then
-        bat --color=always "$1" | less -RF
-    else
-        echo "$1 does not exist."
-        return 1
-    fi
-    return 0
-}
-
-trash() {
-    if [[ -z "$1" ]]; then
-        echo "Usage: trash <file_or_dir>"
-        return 1
-    fi
-
-    if [[ -e "$1" ]]; then
-        kioclient5 move "$1" trash:/
-    else
-        echo "$1 does not exist."
-        return 1
-    fi
-    return 0
-}
-
-check-update() {
-    local updates=$(checkupdates)
-
-    if [[ -n "$updates" ]]; then
-        local updateCount=$(wc -l <<< "$updates")
-        echo "$updateCount updates available:"
-        echo
-        echo "$updates" | less
-    else
-        echo "System is up to date." 
-    fi
-}
-
-path() {
-    local currentPath=$(pwd)
-    echo "$currentPath"
-    wl-copy "$currentPath"
-}
-
 # Created by `pipx` on 2026-03-22 15:12:44
 export PATH="$PATH:/home/himc29/.local/bin"
 export LIBVIRT_DEFAULT_URI="qemu:///system"
