@@ -1,3 +1,10 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
@@ -8,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -115,6 +122,14 @@ alias cat="bat"
 alias -g G="| grep"
 alias priv-ip="ip addr show | grep 'inet 192.168.100' | awk '{print \$2}' | cut -d/ -f1"
 alias gundo="git reset --soft HEAD~1"
+alias disable-bt="rfkill block bluetooth"
+alias enable-bt="rfkill unblock bluetooth & sudo systemctl enable --now bluetooth"
+alias disable-vm="sudo systemctl disable --now docker libvirtd"
+alias enable-vm="sudo systemctl enable --now docker libvirtd"
+alias stop-vm="sudo systemctl stop docker libvirtd"
+alias start-vm="sudo systemctl start docker libvirtd"
+alias power-use="sudo powerstat -d 0"
+alias print-battery-limit="\cat /sys/class/power_supply/BAT0/charge_control_end_threshold | sed '$ s/$/%/'"
 
 set-gpu() {
     if [[ -z "$1" ]]; then
@@ -124,12 +139,15 @@ set-gpu() {
 
     case "$1" in
         int)
+            sudo systemctl mask nvidia-suspend.service nvidia-resume.service nvidia-hibernate.service
             sudo envycontrol -s integrated
             ;;
         ext)
+            sudo systemctl unmask nvidia-suspend.service nvidia-resume.service nvidia-hibernate.service
             sudo envycontrol -s nvidia
             ;;
         hybrid)
+            sudo systemctl unmask nvidia-suspend.service nvidia-resume.service nvidia-hibernate.service
             sudo envycontrol -s hybrid
             ;;
         *)
@@ -190,9 +208,44 @@ path() {
     wl-copy "$currentPath"
 }
 
+caps-led() {
+    if [[ -z "$1" ]]; then
+    echo "Usage: on / off"
+        return 1
+    fi
+
+    case "$1" in
+        on)
+            echo 1 | sudo tee /sys/class/leds/input4::capslock/brightness > /dev/null
+            ;;
+        off)   
+            echo 0 | sudo tee /sys/class/leds/input4::capslock/brightness > /dev/null
+            ;;
+        blink)
+        local time="$2"
+            if ! sleep "$time" >/dev/null 2>&1; then 
+                echo "invalid blink duration, defaulting to 1 sec"
+                time="1"
+            fi
+
+            trap 'caps-led off; trap - INT; return' INT
+
+            while true; do
+                caps-led on
+                sleep "$time"
+                caps-led off
+                sleep "$time"
+            done
+            ;;
+    esac
+}
+
 # Created by `pipx` on 2026-03-22 15:12:44
 export PATH="$PATH:/home/himc29/.local/bin"
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 
 source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 export YSU_MESSAGE_POSITION="after"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

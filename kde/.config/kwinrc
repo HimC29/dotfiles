@@ -23,6 +23,11 @@ Dialogs=86
 Inactive=92
 Menus=88
 
+[Effect-wobblywindows]
+Drag=85
+Stiffness=10
+WobblynessLevel=1
+
 [ElectricBorders]
 TopLeft=ShowDesktop
 
@@ -36,10 +41,17 @@ desktopchangeosdEnabled=false
 fallapartEnabled=true
 mousemarkEnabled=true
 poloniumEnabled=false
-translucencyEnabled=true
 wobblywindowsEnabled=true
 
 [Tiling][26f88434-83e7-4d35-826e-7edd891861ee][02d9a8a9-082d-461e-b581-adad3fd485d7]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][26f88434-83e7-4d35-826e-7edd891861ee][3c073f6e-26f5-4246-bd68-b525d2ffb105]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][26f88434-83e7-4d35-826e-7edd891861ee][f8fddf48-643e-4343-8d09-5e9d63f90d6b]
 padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
@@ -50,6 +62,10 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 [Tiling][420a7c08-11ff-4b7d-8739-fb2c129871d4][02d9a8a9-082d-461e-b581-adad3fd485d7]
 padding=4
 tiles={"layoutDirection":"floating","tiles":[]}
+
+[Tiling][420a7c08-11ff-4b7d-8739-fb2c129871d4][3c073f6e-26f5-4246-bd68-b525d2ffb105]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][420a7c08-11ff-4b7d-8739-fb2c129871d4][dd28640d-1192-416a-9302-6926a8c067c6]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
@@ -66,12 +82,34 @@ tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"wi
 padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][5c094a30-7d1a-44cf-894f-41f038f7039d][3c073f6e-26f5-4246-bd68-b525d2ffb105]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][5c094a30-7d1a-44cf-894f-41f038f7039d][f8fddf48-643e-4343-8d09-5e9d63f90d6b]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Tiling][726b2a7e-fa2d-4a72-b798-b61b5fc5406a][02d9a8a9-082d-461e-b581-adad3fd485d7]
 padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
+[Tiling][726b2a7e-fa2d-4a72-b798-b61b5fc5406a][3c073f6e-26f5-4246-bd68-b525d2ffb105]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][726b2a7e-fa2d-4a72-b798-b61b5fc5406a][f8fddf48-643e-4343-8d09-5e9d63f90d6b]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
 [Wayland]
+InputMethod[$e]=/usr/share/applications/org.kde.plasma.keyboard.desktop
 VirtualKeyboardEnabled=true
+
+[Windows]
+DelayFocusInterval=100
+FocusPolicy=FocusFollowsMouse
+NextFocusPrefersMouse=true
 
 [Xwayland]
 Scale=1
