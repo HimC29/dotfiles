@@ -36,6 +36,7 @@ sortMode=-1
 
 [Containments][135][Wallpaper][org.kde.image][General]
 DynamicMode=2
+Image=/usr/share/wallpapers/Next/contents/images_dark/5120x2880.png
 SlidePaths=/usr/share/wallpapers/
 
 [Containments][189]
@@ -189,8 +190,8 @@ plugin=org.kde.plasma.panelspacer
 AppletOrder=212;192;211;222;205;226
 
 [Containments][227]
-ItemGeometries-1920x1080=Applet-233:640,304,640,160,0;
-ItemGeometriesHorizontal=Applet-233:640,304,640,160,0;
+ItemGeometries-1920x1080=Applet-238:608,320,704,160,0;
+ItemGeometriesHorizontal=Applet-238:608,320,704,160,0;
 activityId=7031833a-5422-46bf-8ecb-f3db69510831
 formfactor=0
 immutability=1
@@ -199,17 +200,16 @@ location=0
 plugin=org.kde.desktopcontainment
 wallpaperplugin=org.kde.image
 
-[Containments][227][Applets][233]
+[Containments][227][Applets][238]
 immutability=1
 plugin=com.github.prayag2.modernclock
-
-[Containments][227][Applets][233][Configuration][ConfigDialog]
-DialogHeight=630
-DialogWidth=810
 
 [Containments][227][ConfigDialog]
 DialogHeight=630
 DialogWidth=810
+
+[Containments][227][Wallpaper][org.kde.image][General]
+Image=/usr/share/wallpapers/Next/contents/images_dark/5120x2880.png
 
 [Containments][234]
 ItemGeometries-1920x1080=Applet-236:624.006,335.995,640,160,0;
@@ -231,6 +231,7 @@ DialogHeight=630
 DialogWidth=810
 
 [Containments][234][Wallpaper][org.kde.image][General]
+Image=/usr/share/wallpapers/Next/contents/images_dark/5120x2880.png
 SlidePaths=/usr/share/wallpapers/
 
 [Containments][82]
@@ -278,5 +279,5 @@ systemFavorites=suspend\\,hibernate\\,reboot\\,shutdown
 AppletOrder=83;111
 
 [ScreenMapping]
-itemsOnDisabledScreens=0,7031833a-5422-46bf-8ecb-f3db69510831,3,desktop:/achievements,desktop:/bitwarden master pass.txt,desktop:/bitwa,0,f3b3cfc7-ca30-4e13-8cf7-106549d9a747,3,desktop:/main.c,desktop:/c,desktop:/portfolio,1,7031833a-5422-46bf-8ecb-f3db69510831,5,desktop:/command for kde backup.txt,desktop:/history-m2t2-26-project.pdf,desktop:/siseduorg-keynote-downloader,desktop:/chrome-mjoklplbddabcmpepnokjaffbmgbkkgg-Default.desktop,desktop:/passwords
+itemsOnDisabledScreens=0,f3b3cfc7-ca30-4e13-8cf7-106549d9a747,3,desktop:/c,desktop:/portfolio,desktop:/main.c,0,7031833a-5422-46bf-8ecb-f3db69510831,3,desktop:/bitwarden master pass.txt,desktop:/achievements,desktop:/bitwa,1,7031833a-5422-46bf-8ecb-f3db69510831,5,desktop:/siseduorg-keynote-downloader,desktop:/command for kde backup.txt,desktop:/history-m2t2-26-project.pdf,desktop:/passwords,desktop:/chrome-mjoklplbddabcmpepnokjaffbmgbkkgg-Default.desktop
 screenMapping=
