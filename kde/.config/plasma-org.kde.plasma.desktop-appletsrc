@@ -256,7 +256,7 @@ DialogHeight=630
 DialogWidth=810
 
 [Containments][82][Applets][111][Configuration][General]
-launchers=applications:systemsettings.desktop,applications:org.kde.konsole.desktop,preferred://filemanager,applications:chrome-hnpfjngllnobngcgfapefoaidbinmjnm-Default.desktop,applications:google-chrome.desktop,applications:arduino-ide-v2.desktop,applications:code.desktop
+launchers=applications:systemsettings.desktop,applications:org.kde.konsole.desktop,preferred://filemanager,applications:FFPWA-01KT0S3D00YAQY6W029CMXBT46.desktop,applications:firefox.desktop,applications:arduino-ide-v2.desktop,applications:code.desktop
 
 [Containments][82][Applets][83]
 immutability=1

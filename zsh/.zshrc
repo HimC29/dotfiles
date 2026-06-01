@@ -77,7 +77,15 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git archlinux colored-man-pages sudo)
+plugins=(
+    git
+    archlinux
+    colored-man-pages
+    sudo
+    web-search
+    copyfile
+    copybuffer
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -117,7 +125,7 @@ alias update="yay -Syu"
 alias c="clear"
 alias x="exit"
 alias h="history -10"
-alias zsh-r="source ~/.zshrc"
+alias src="source ~/.zshrc"
 alias cat="bat"
 alias -g G="| grep"
 alias priv-ip="ip addr show | grep 'inet 192.168.100' | awk '{print \$2}' | cut -d/ -f1"
@@ -130,6 +138,12 @@ alias stop-vm="sudo systemctl stop docker libvirtd"
 alias start-vm="sudo systemctl start docker libvirtd"
 alias power-use="sudo powerstat -d 0"
 alias print-battery-limit="\cat /sys/class/power_supply/BAT0/charge_control_end_threshold | sed '$ s/$/%/'"
+alias sysclean="sudo pacman -Rns --no-confirm \$(pacman -Qdtq) 2>/dev/null; sudo paccache -r; sudo paccache -rk1; sudo journalctl --vacuum-size=500M; rm -rf ~/.local/share/Trash/{*,.*} 2>/dev/null; echo '🎉 System clean complete!'"
+alias update-mirrors="sudo reflector --country Singapore,Taiwan,Japan,Malaysia --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
+alias fan-max='sudo sh -c "echo 0 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon3/pwm1_enable"'
+alias fan-auto='sudo sh -c "echo 2 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon3/pwm1_enable"'
+alias fan-rpm='cat /sys/devices/platform/asus-nb-wmi/hwmon/hwmon3/fan1_input'
+alias temps='watch sensors'
 
 set-gpu() {
     if [[ -z "$1" ]]; then
@@ -222,20 +236,14 @@ caps-led() {
             echo 0 | sudo tee /sys/class/leds/input4::capslock/brightness > /dev/null
             ;;
         blink)
-        local time="$2"
+            local time="$2"
             if ! sleep "$time" >/dev/null 2>&1; then 
                 echo "invalid blink duration, defaulting to 1 sec"
-                time="1"
+                time=1
             fi
-
-            trap 'caps-led off; trap - INT; return' INT
-
-            while true; do
-                caps-led on
-                sleep "$time"
-                caps-led off
-                sleep "$time"
-            done
+            echo 1 | sudo tee /sys/class/leds/input4::capslock/brightness > /dev/null
+            sleep "$time"
+            echo 0 | sudo tee /sys/class/leds/input4::capslock/brightness > /dev/null
             ;;
     esac
 }
@@ -244,8 +252,10 @@ caps-led() {
 export PATH="$PATH:/home/himc29/.local/bin"
 export LIBVIRT_DEFAULT_URI="qemu:///system"
 
-source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
+#source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 export YSU_MESSAGE_POSITION="after"
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
