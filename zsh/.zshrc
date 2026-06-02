@@ -118,32 +118,65 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias ls='eza --icons'
+# ALIASES
+
+# ---------------------------------------------------------------------
+# 1. Navigation & Modern CLI Replacements
+# ---------------------------------------------------------------------
+alias ls='eza --icons' 
 alias ll='eza -la --icons'
 alias lt='eza --tree --icons'
-alias update="yay -Syu"
+alias cat="bat"
 alias c="clear"
 alias x="exit"
+
+# ---------------------------------------------------------------------
+# 2. System Shortcuts & Global Modifiers
+# ---------------------------------------------------------------------
 alias h="history -10"
 alias src="source ~/.zshrc"
-alias cat="bat"
 alias -g G="| grep"
-alias priv-ip="ip addr show | grep 'inet 192.168.100' | awk '{print \$2}' | cut -d/ -f1"
+
+# ---------------------------------------------------------------------
+# 3. Development & Network Tools
+# ---------------------------------------------------------------------
 alias gundo="git reset --soft HEAD~1"
-alias disable-bt="rfkill block bluetooth"
-alias enable-bt="rfkill unblock bluetooth & sudo systemctl enable --now bluetooth"
-alias disable-vm="sudo systemctl disable --now docker libvirtd"
-alias enable-vm="sudo systemctl enable --now docker libvirtd"
-alias stop-vm="sudo systemctl stop docker libvirtd"
-alias start-vm="sudo systemctl start docker libvirtd"
-alias power-use="sudo powerstat -d 0"
-alias print-battery-limit="\cat /sys/class/power_supply/BAT0/charge_control_end_threshold | sed '$ s/$/%/'"
-alias sysclean="sudo pacman -Rns --no-confirm \$(pacman -Qdtq) 2>/dev/null; sudo paccache -r; sudo paccache -rk1; sudo journalctl --vacuum-size=500M; rm -rf ~/.local/share/Trash/{*,.*} 2>/dev/null; echo '🎉 System clean complete!'"
+alias priv-ip="ip addr show | grep 'inet 192.168.100' | awk '{print \$2}' | cut -d/ -f1"
+
+# ---------------------------------------------------------------------
+# 4. Arch Package Management & Mirrors
+# ---------------------------------------------------------------------
+alias pac="sudo pacman"
+alias update="yay -Syu"
+alias grub-up="sudo grub-mkconfig -o /boot/grub/grub.cfg"
+alias sysclean="sudo pacman -Qdtq | xargs -r sudo pacman -Rns --no-confirm 2>/dev/null; sudo paccache -rk1"
 alias update-mirrors="sudo reflector --country Singapore,Taiwan,Japan,Malaysia --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
-alias fan-max='sudo sh -c "echo 0 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon3/pwm1_enable"'
-alias fan-auto='sudo sh -c "echo 2 > /sys/devices/platform/asus-nb-wmi/hwmon/hwmon3/pwm1_enable"'
-alias fan-rpm='cat /sys/devices/platform/asus-nb-wmi/hwmon/hwmon3/fan1_input'
+
+# ---------------------------------------------------------------------
+# 5. Service & VM Management
+# ---------------------------------------------------------------------
+alias sys="sudo systemctl"
+alias enable-bt="rfkill unblock bluetooth && sudo systemctl enable --now bluetooth"
+alias disable-bt="sudo systemctl disable --now bluetooth && rfkill block bluetooth"
+alias enable-vm="sudo systemctl enable docker libvirtd"
+alias disable-vm="sudo systemctl disable docker libvirtd"
+alias start-vm="sudo systemctl start docker libvirtd"
+alias stop-vm="sudo systemctl stop docker libvirtd"
+
+# ---------------------------------------------------------------------
+# 6. Diagnostics, Hardware & Power Monitoring
+# ---------------------------------------------------------------------
 alias temps='watch sensors'
+alias power-use="sudo powerstat -d 0"
+alias print-battery-limit="\cat /sys/class/power_supply/BAT0/charge_control_end_threshold | sed '\$ s/\$/%/'"
+alias fan-rpm='cat /sys/class/hwmon/hwmon*/fan1_input 2>/dev/null || cat /sys/devices/platform/asus-nb-wmi/hwmon/hwmon*/fan1_input'
+
+# ---------------------------------------------------------------------
+# 7. ASUS Thermal Profiles 
+# ---------------------------------------------------------------------
+alias fan-full='echo 0 | sudo tee /sys/class/hwmon/hwmon*/pwm1_enable > /dev/null'
+alias fan-auto='echo 2 | sudo tee /sys/class/hwmon/hwmon*/pwm1_enable > /dev/null'
+alias fan-hw-auto='echo 2 | sudo tee /sys/class/hwmon/hwmon*/pwm1_enable > /dev/null'
 
 set-gpu() {
     if [[ -z "$1" ]]; then
