@@ -1,0 +1,23 @@
+## ===== CORE BEHAVIOR =====
+set linenumbers
+set softwrap
+set autoindent
+set tabsize 4
+set constantshow
+set minibar
+set nohelp
+
+## ===== SYNTAX =====
+include /usr/share/nano/*.nanorc
+
+## ===== CLEAN BAT-LIKE COLORS =====
+
+# UI (keep subtle, not loud)
+set titlecolor white,black
+set statuscolor black,white
+set errorcolor black,red
+set selectedcolor black,cyan
+
+# Text UI elements
+set numbercolor brightblack
+set keycolor cyan

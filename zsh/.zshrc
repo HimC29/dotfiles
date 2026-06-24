@@ -148,6 +148,7 @@ alias priv-ip="ip addr show | grep 'inet 192.168.100' | awk '{print \$2}' | cut 
 # ---------------------------------------------------------------------
 alias pac="sudo pacman"
 alias update="yay -Syu"
+alias check-updates="yay -Qu"
 alias grub-up="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 alias sysclean="sudo pacman -Qdtq | xargs -r sudo pacman -Rns --no-confirm 2>/dev/null; sudo paccache -rk1"
 alias update-mirrors="sudo reflector --country Singapore,Taiwan,Japan,Malaysia --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist"
@@ -174,7 +175,7 @@ alias fan-rpm='cat /sys/class/hwmon/hwmon*/fan1_input 2>/dev/null || cat /sys/de
 # ---------------------------------------------------------------------
 # 7. ASUS Thermal Profiles 
 # ---------------------------------------------------------------------
-alias fan-full='echo 0 | sudo tee /sys/class/hwmon/hwmon*/pwm1_enable > /dev/null'
+alias fan-max='echo 0 | sudo tee /sys/class/hwmon/hwmon*/pwm1_enable > /dev/null'
 alias fan-auto='echo 2 | sudo tee /sys/class/hwmon/hwmon*/pwm1_enable > /dev/null'
 alias fan-hw-auto='echo 2 | sudo tee /sys/class/hwmon/hwmon*/pwm1_enable > /dev/null'
 
@@ -292,3 +293,7 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+
+
+# Added by Antigravity CLI installer
+export PATH="/home/himc29/.local/bin:$PATH"

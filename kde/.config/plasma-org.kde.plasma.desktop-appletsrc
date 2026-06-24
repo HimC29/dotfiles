@@ -190,8 +190,8 @@ plugin=org.kde.plasma.panelspacer
 AppletOrder=212;192;211;222;205;226
 
 [Containments][227]
-ItemGeometries-1920x1080=Applet-238:608,320,704,160,0;
-ItemGeometriesHorizontal=Applet-238:608,320,704,160,0;
+ItemGeometries-1920x1080=Applet-238:80,304,704,160,0;
+ItemGeometriesHorizontal=Applet-238:80,304,704,160,0;
 activityId=7031833a-5422-46bf-8ecb-f3db69510831
 formfactor=0
 immutability=1
