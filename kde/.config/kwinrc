@@ -1,7 +1,8 @@
 [Desktops]
 Id_1=78a41a17-0bdb-4937-aa6c-54614c329dbd
+Id_2=ea18f2ab-bf54-4284-9cfe-0eeca3876db4
 Name_1=Desktop 6
-Number=1
+Number=2
 Rows=1
 
 [Effect-blur]
@@ -125,6 +126,14 @@ padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][9c2b9aec-c18c-4ad5-9ce3-424d9ed879a2][02d9a8a9-082d-461e-b581-adad3fd485d7]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][ea18f2ab-bf54-4284-9cfe-0eeca3876db4][02d9a8a9-082d-461e-b581-adad3fd485d7]
+padding=4
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
+
+[Tiling][ea18f2ab-bf54-4284-9cfe-0eeca3876db4][3c073f6e-26f5-4246-bd68-b525d2ffb105]
 padding=4
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
